@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 329537969ba04467bbd6f045ebe7ae53
+ShaderIncludeImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 301932
+  packageName: Toon character - Ned
+  packageVersion: 1.0
+  assetPath: Assets/WalldoffStudios/Shared/Shaders/ToonShaders/7Colors.cginc
+  uploadId: 782982

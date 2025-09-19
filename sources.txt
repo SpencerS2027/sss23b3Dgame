@@ -1,3 +1,13 @@
-https://polyhaven.com/a/brass_blowtorch blowtorch
-
-https://polyhaven.com/a/concrete_tile_facade tile floor
+Cannon: https://polyhaven.com/a/cannon_01
+Dutch Ship Large: https://polyhaven.com/a/dutch_ship_large_02
+Dutch Ship Medium: https://polyhaven.com/a/dutch_ship_medium
+Ship Pinnace: https://polyhaven.com/a/ship_pinnace
+Treasure Chest: https://polyhaven.com/a/treasure_chest
+Cannonball skin: https://www.vecteezy.com/photo/10760371-bump-map-painted-metal-texture-bump-mapping
+Pomegranate: https://polyhaven.com/a/food_pomegranate_01
+Wooden Pier: https://polyhaven.com/a/modular_wooden_pier
+Wooden Texture: https://polyhaven.com/a/old_wood_floor
+Wooden Planks Texture: https://polyhaven.com/a/worn_planks
+Rough Wood: https://polyhaven.com/a/rough_wood
+pirate raft: https://sketchfab.com/3d-models/pirate-boat-8152a12db067492b8179f86e02cf2cb9#download
+ship's wheel: https://sketchfab.com/3d-models/ships-wheel-7db785e378c848ba9c14f90f60d0c356
