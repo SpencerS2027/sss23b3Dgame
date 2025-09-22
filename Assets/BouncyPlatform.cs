@@ -6,20 +6,20 @@ public class BouncyPlatform : MonoBehaviour
     [SerializeField] private float bounceForce = 15f;
     [SerializeField] private bool useUpwardForceOnly = true;
     [SerializeField] private float bounceMultiplier = 1.2f;
-    
+
     [Header("Audio & Effects (Optional)")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip bounceSound;
     [SerializeField] private ParticleSystem bounceEffect;
-    
+
     [Header("Bounce Cooldown")]
     [SerializeField] private float bounceCooldown = 0.5f;
     private float lastBounceTime;
-    
+
     private void Start()
     {
         Debug.Log($"=== BouncyPlatform Detailed Diagnostics on: {gameObject.name} ===");
-        
+
         // Direct component access test
         Debug.Log("=== DIRECT ACCESS TESTS ===");
         try
@@ -39,17 +39,17 @@ public class BouncyPlatform : MonoBehaviour
 
         try
         {
-            Collider directCollider = gameObject.GetComponent<Collider>();
-            Debug.Log($"Direct Collider access: {directCollider != null}");
+            BoxCollider directCollider = gameObject.GetComponent<BoxCollider>();
+            Debug.Log($"Direct BoxCollider access: {directCollider != null}");
             if (directCollider != null)
             {
-                Debug.Log($"  Direct Collider type: {directCollider.GetType().Name}");
-                Debug.Log($"  Direct Collider - Enabled: {directCollider.enabled}, IsTrigger: {directCollider.isTrigger}");
+                Debug.Log($"  Direct BoxCollider type: {directCollider.GetType().Name}");
+                Debug.Log($"  Direct BoxCollider - Enabled: {directCollider.enabled}, IsTrigger: {directCollider.isTrigger}");
             }
         }
         catch (System.Exception e)
         {
-            Debug.LogError($"Exception accessing Collider directly: {e.Message}");
+            Debug.LogError($"Exception accessing BoxCollider directly: {e.Message}");
         }
 
         // Alternative access methods
@@ -69,7 +69,7 @@ public class BouncyPlatform : MonoBehaviour
         Component[] allComponents = gameObject.GetComponents<Component>();
         int nullCount = 0;
         int validCount = 0;
-        
+
         for (int i = 0; i < allComponents.Length; i++)
         {
             if (allComponents[i] == null)
@@ -83,20 +83,30 @@ public class BouncyPlatform : MonoBehaviour
                 Debug.Log($"  Component[{i}]: {allComponents[i].GetType().Name}");
             }
         }
-        
+
         Debug.Log($"Valid components: {validCount}, NULL components: {nullCount}");
 
-        // Final collider setup
-        Collider workingCollider = gameObject.GetComponent<Collider>();
-        if (workingCollider != null)
+        // Final collider setup - try BoxCollider specifically first
+        BoxCollider boxCollider = gameObject.GetComponent<BoxCollider>();
+        if (boxCollider != null)
         {
-            workingCollider.isTrigger = false;
-            Debug.Log($"SUCCESS: Collider found and configured!");
+            boxCollider.isTrigger = false;
+            Debug.Log($"SUCCESS: BoxCollider found and configured!");
         }
         else
         {
-            Debug.LogError($"FAILED: Still no collider detected after all tests");
-            // Don't add a new one yet - let's see what the diagnostics show first
+            // Fallback to generic Collider
+            Collider workingCollider = gameObject.GetComponent<Collider>();
+            if (workingCollider != null)
+            {
+                workingCollider.isTrigger = false;
+                Debug.Log($"SUCCESS: Generic Collider found and configured!");
+            }
+            else
+            {
+                Debug.LogError($"FAILED: Still no collider detected after all tests");
+                // Don't add a new one yet - let's see what the diagnostics show first
+            }
         }
 
         // Player check
@@ -111,11 +121,11 @@ public class BouncyPlatform : MonoBehaviour
 
         Debug.Log($"=== End Diagnostics ===");
     }
-    
+
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log($"BouncyPlatform: Collision detected with {collision.gameObject.name}, Tag: {collision.gameObject.tag}");
-        
+
         // Check if the colliding object is the player OR has a player parent
         GameObject playerObject = FindPlayerObject(collision.gameObject);
         if (playerObject != null)
@@ -128,11 +138,11 @@ public class BouncyPlatform : MonoBehaviour
             Debug.Log($"No Player found in collision hierarchy");
         }
     }
-    
+
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log($"BouncyPlatform: Trigger detected with {other.gameObject.name}, Tag: {other.gameObject.tag}");
-        
+
         // Alternative trigger-based collision detection
         GameObject playerObject = FindPlayerObject(other.gameObject);
         if (playerObject != null)
@@ -147,7 +157,7 @@ public class BouncyPlatform : MonoBehaviour
             Debug.Log($"No Player found in trigger hierarchy");
         }
     }
-    
+
     private GameObject FindPlayerObject(GameObject collisionObject)
     {
         // Check if this object is tagged as Player
@@ -155,7 +165,7 @@ public class BouncyPlatform : MonoBehaviour
         {
             return collisionObject;
         }
-        
+
         // Check parent objects for Player tag
         Transform current = collisionObject.transform;
         while (current != null)
@@ -166,11 +176,11 @@ public class BouncyPlatform : MonoBehaviour
             }
             current = current.parent;
         }
-        
+
         // Check child objects for Player tag
         return FindPlayerInChildren(collisionObject.transform);
     }
-    
+
     private GameObject FindPlayerInChildren(Transform parent)
     {
         foreach (Transform child in parent)
@@ -179,7 +189,7 @@ public class BouncyPlatform : MonoBehaviour
             {
                 return child.gameObject;
             }
-            
+
             GameObject foundInGrandchildren = FindPlayerInChildren(child);
             if (foundInGrandchildren != null)
             {
@@ -188,21 +198,21 @@ public class BouncyPlatform : MonoBehaviour
         }
         return null;
     }
-    
+
     private void HandleBounce(GameObject player, Vector3 surfaceNormal)
     {
         Debug.Log($"HandleBounce called for {player.name}");
-        
+
         // Check cooldown to prevent rapid multiple bounces
         if (Time.time - lastBounceTime < bounceCooldown)
         {
             Debug.Log("Bounce blocked by cooldown");
             return;
         }
-        
+
         lastBounceTime = Time.time;
         Debug.Log("Bounce cooldown passed - proceeding with bounce");
-        
+
         // Try to get CharacterController first
         CharacterController characterController = player.GetComponent<CharacterController>();
         if (characterController != null)
@@ -211,7 +221,7 @@ public class BouncyPlatform : MonoBehaviour
             HandleCharacterControllerBounce(player, surfaceNormal);
             return;
         }
-        
+
         // Try to get Rigidbody
         Rigidbody playerRb = player.GetComponent<Rigidbody>();
         if (playerRb != null)
@@ -220,15 +230,15 @@ public class BouncyPlatform : MonoBehaviour
             HandleRigidbodyBounce(playerRb, surfaceNormal);
             return;
         }
-        
+
         Debug.LogWarning("BouncyPlatform: Player object has neither CharacterController nor Rigidbody!");
     }
-    
+
     private void HandleCharacterControllerBounce(GameObject player, Vector3 surfaceNormal)
     {
         // For CharacterController, we need to apply the bounce through the player's movement script
         // This assumes the player has a script that can receive bounce velocity
-        
+
         // Try to find a common player movement script interface
         var playerMovement = player.GetComponent<IBounceable>();
         if (playerMovement != null)
@@ -244,7 +254,7 @@ public class BouncyPlatform : MonoBehaviour
             {
                 // You can customize this to match your player controller's method name
                 Vector3 bounceVelocity = CalculateBounceVelocity(surfaceNormal);
-                
+
                 // Try to invoke a bounce method if it exists
                 var bounceMethod = movementScript.GetType().GetMethod("ApplyBounce");
                 if (bounceMethod != null)
@@ -257,14 +267,14 @@ public class BouncyPlatform : MonoBehaviour
                 }
             }
         }
-        
+
         PlayBounceEffects();
     }
-    
+
     private void HandleRigidbodyBounce(Rigidbody playerRb, Vector3 surfaceNormal)
     {
         Vector3 bounceVelocity = CalculateBounceVelocity(surfaceNormal);
-        
+
         if (useUpwardForceOnly)
         {
             // Reset downward velocity and apply upward bounce
@@ -278,10 +288,10 @@ public class BouncyPlatform : MonoBehaviour
             // Apply full bounce velocity
             playerRb.AddForce(bounceVelocity, ForceMode.VelocityChange);
         }
-        
+
         PlayBounceEffects();
     }
-    
+
     private Vector3 CalculateBounceVelocity(Vector3 surfaceNormal)
     {
         if (useUpwardForceOnly)
@@ -293,7 +303,7 @@ public class BouncyPlatform : MonoBehaviour
             return surfaceNormal * bounceForce * bounceMultiplier;
         }
     }
-    
+
     private void PlayBounceEffects()
     {
         // Play sound effect
@@ -301,22 +311,22 @@ public class BouncyPlatform : MonoBehaviour
         {
             audioSource.PlayOneShot(bounceSound);
         }
-        
+
         // Play particle effect
         if (bounceEffect)
         {
             bounceEffect.Play();
         }
-        
+
         // Optional: Add a small screen shake or platform animation here
         StartCoroutine(PlatformBounceAnimation());
     }
-    
+
     private System.Collections.IEnumerator PlatformBounceAnimation()
     {
         Vector3 originalScale = transform.localScale;
         Vector3 squashScale = new Vector3(originalScale.x * 1.1f, originalScale.y * 0.9f, originalScale.z * 1.1f);
-        
+
         // Squash
         float elapsed = 0f;
         float duration = 0.1f;
@@ -326,7 +336,7 @@ public class BouncyPlatform : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
-        
+
         // Stretch back
         elapsed = 0f;
         while (elapsed < duration)
@@ -335,7 +345,7 @@ public class BouncyPlatform : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return null;
         }
-        
+
         transform.localScale = originalScale;
     }
 }

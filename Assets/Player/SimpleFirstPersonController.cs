@@ -11,7 +11,6 @@ public class SimpleFirstPersonController : MonoBehaviour
     private float rotationX = 0f; // Rotation on the X-axis (up/down)
     private float rotationY = 0f; // Rotation on the Y-axis (left/right)
     private CharacterController characterController;
-
     private Vector3 moveDirection = Vector3.zero;
     private Vector3 velocity; // This will store the velocity for gravity and jumping
     private Camera camera;
@@ -67,5 +66,23 @@ public class SimpleFirstPersonController : MonoBehaviour
 
         // Apply movement and gravity
         characterController.Move((moveDirection + velocity) * Time.deltaTime);
+    }
+
+    // BOUNCY PLATFORM SUPPORT
+    // This method is called by the BouncyPlatform script when the player hits a bouncy surface
+    public void ApplyBounce(Vector3 bounceVelocity)
+    {
+        Debug.Log($"Player received bounce: {bounceVelocity}");
+
+        // Apply the bounce to the vertical velocity
+        // This overrides the current Y velocity, giving a strong upward boost
+        velocity.y = bounceVelocity.y;
+
+        // Optional: Add some horizontal momentum if the bounce has X/Z components
+        // Uncomment these lines if you want directional bouncing
+        // moveDirection.x += bounceVelocity.x;
+        // moveDirection.z += bounceVelocity.z;
+
+        Debug.Log($"Player velocity after bounce: {velocity}");
     }
 }
