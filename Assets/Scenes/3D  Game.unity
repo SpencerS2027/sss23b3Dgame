@@ -1277,10 +1277,22 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 124baf31f1771034f9b8d32b5d711720, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1705163351}
+      addedObject: {fileID: 1705163355}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 124baf31f1771034f9b8d32b5d711720, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1705163355}
+      addedObject: {fileID: 1705163357}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 124baf31f1771034f9b8d32b5d711720, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1705163358}
+    - targetCorrespondingSourceObject: {fileID: -5464237085450565689, guid: 124baf31f1771034f9b8d32b5d711720, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 897943227}
+    - targetCorrespondingSourceObject: {fileID: -5464237085450565689, guid: 124baf31f1771034f9b8d32b5d711720, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 897943226}
+    - targetCorrespondingSourceObject: {fileID: -5464237085450565689, guid: 124baf31f1771034f9b8d32b5d711720, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 897943228}
   m_SourcePrefab: {fileID: 100100000, guid: 124baf31f1771034f9b8d32b5d711720, type: 3}
 --- !u!4 &302734801 stripped
 Transform:
@@ -2137,21 +2149,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &462342765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 462342754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abf6b32d83caea441bd9d402fa6c084a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  jumpForce: 10
-  bounceFactor: 0.8
 --- !u!1001 &486523227
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2231,9 +2228,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 56715548630396312, guid: 070095bfedf139b42979536db6a4f68e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 462342762}
-    - targetCorrespondingSourceObject: {fileID: 56715548630396312, guid: 070095bfedf139b42979536db6a4f68e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 462342765}
   m_SourcePrefab: {fileID: 100100000, guid: 070095bfedf139b42979536db6a4f68e, type: 3}
 --- !u!1 &499064477
 GameObject:
@@ -2398,6 +2392,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4c149205b58604410bb21fd0545409b6, type: 3}
       propertyPath: m_Name
       value: Character 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4c149205b58604410bb21fd0545409b6, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 3354461190760136174, guid: 4c149205b58604410bb21fd0545409b6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3914,6 +3912,70 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 107.96399, y: 0, z: 0}
+--- !u!1 &897943223 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -5464237085450565689, guid: 124baf31f1771034f9b8d32b5d711720, type: 3}
+  m_PrefabInstance: {fileID: 300682474}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &897943226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 897943223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abf6b32d83caea441bd9d402fa6c084a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounceForce: 15
+  useUpwardForceOnly: 1
+  bounceMultiplier: 1.2
+  audioSource: {fileID: 0}
+  bounceSound: {fileID: 0}
+  bounceEffect: {fileID: 0}
+  bounceCooldown: 0.5
+  lastBounceTime: 0
+--- !u!114 &897943227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 897943223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abf6b32d83caea441bd9d402fa6c084a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounceForce: 15
+  useUpwardForceOnly: 1
+  bounceMultiplier: 1.2
+  audioSource: {fileID: 0}
+  bounceSound: {fileID: 0}
+  bounceEffect: {fileID: 0}
+  bounceCooldown: 0.5
+  lastBounceTime: 0
+--- !u!114 &897943228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 897943223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 760c22de80d4d52458276423869c895a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounceForce: 15
+  useUpwardForceOnly: 1
+  bounceMultiplier: 1.2
+  audioSource: {fileID: 0}
+  bounceSound: {fileID: 0}
+  bounceEffect: {fileID: 0}
+  bounceCooldown: 0.5
 --- !u!1001 &903558791
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7600,27 +7662,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 124baf31f1771034f9b8d32b5d711720, type: 3}
   m_PrefabInstance: {fileID: 300682474}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &1705163351
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1705163347}
-  m_Material: {fileID: 13400000, guid: d18f97526e718cd408a1c75f1dcc2a0d, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.03, y: 1, z: 2.61}
-  m_Center: {x: 0, y: 0.43, z: 0.43}
 --- !u!54 &1705163355
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7648,6 +7689,46 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1705163357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705163347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 760c22de80d4d52458276423869c895a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bounceForce: 15
+  useUpwardForceOnly: 1
+  bounceMultiplier: 1.2
+  audioSource: {fileID: 0}
+  bounceSound: {fileID: 0}
+  bounceEffect: {fileID: 0}
+  bounceCooldown: 0.5
+--- !u!65 &1705163358
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705163347}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 2.37}
+  m_Center: {x: 0, y: 0.42, z: 0.48}
 --- !u!1 &1717747970 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 9695bc7581e5a9d44825d4bd0d9bd9fe, type: 3}
