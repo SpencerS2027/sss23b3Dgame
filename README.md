@@ -14,6 +14,8 @@ COMMANDEER
 The player reaches the final stage where he interacts with the environment and co-creates it. This stage is reminiscent of the ship of theseus thought experiment; Ned now takes part in addressing his inner being and navigates through his internal clutter and get to the helm of the ship.
 
 Something Extra:
-Bounce
-Win Screen
-Music - background and win screen
+Bounce,
+Win Screen,
+Music - background and win,
+and Ned
+
