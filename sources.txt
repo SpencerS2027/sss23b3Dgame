@@ -11,5 +11,6 @@ Wooden Planks Texture: https://polyhaven.com/a/worn_planks
 Rough Wood: https://polyhaven.com/a/rough_wood
 pirate raft: https://sketchfab.com/3d-models/pirate-boat-8152a12db067492b8179f86e02cf2cb9#download
 ship's wheel: https://sketchfab.com/3d-models/ships-wheel-7db785e378c848ba9c14f90f60d0c356
-game complete screen (luffy): https://www.denofgeek.com/wp-content/uploads/2023/08/One-Piece-Luffy-Gear-5.jpg?fit=1200%2C675
-I used chat gpt, then claude when that wasn't working, to code for this game. specifically the bounce, game end screen
+game complete screen (luffy): https://www.slashfilm.com/img/gallery/one-piece-monkey-d-luffys-family-tree-explained/intro-1751306708.jpg
+luffy win screen 2 : https://static.wikia.nocookie.net/characters/images/5/5f/Monkey_D._Luffy.png/revision/latest/scale-to-width-down/985?cb=20171210211902
+I used chat gpt, then claude when that wasn't working, to code for this game. specifically the bounce & game end screen
