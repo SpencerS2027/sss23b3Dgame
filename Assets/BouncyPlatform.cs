@@ -204,9 +204,9 @@ public class BouncyPlatform : MonoBehaviour
         Debug.Log($"HandleBounce called for {player.name}");
 
         // Check cooldown to prevent rapid multiple bounces
-        if (Time.time - lastBounceTime < bounceCooldown)
+        if (Time.time - lastBounceTime < bounceCooldown && lastBounceTime > 0)
         {
-            Debug.Log("Bounce blocked by cooldown");
+            Debug.Log($"Bounce blocked by cooldown. Time since last bounce: {Time.time - lastBounceTime}");
             return;
         }
 
